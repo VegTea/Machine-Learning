@@ -50,7 +50,7 @@ def Loss(Y, Yt):
 
 loss_list = []
 
-def CNN_adam(hiddenNums, X, Yt, alpha=0.01, times=2000):
+def ANN_adam(hiddenNums, X, Yt, alpha=0.01, times=2000):
     global loss_list
     n = len(X)
     featureNums = len(X[0])
@@ -89,7 +89,7 @@ def CNN_adam(hiddenNums, X, Yt, alpha=0.01, times=2000):
         W2 -= alpha * Mul(mhat2, 1 / (sqrt(vhat2) + eps))
     return W1, W2
 
-def CNN_sdg(hiddenNums, X, Yt, alpha=0.01, times=50000):
+def ANN_sdg(hiddenNums, X, Yt, alpha=0.01, times=50000):
     global loss_list
     n = len(X)
     featureNums = len(X[0])
@@ -147,7 +147,7 @@ def Predict(filename, W1, W2):
 
 random.seed(0)
 X, Yt = loadData('神经网络算法/Titanic_new.csv')
-W1, W2 = CNN_adam(hiddenNums=10, X=X, Yt=Yt)
+W1, W2 = ANN_adam(hiddenNums=10, X=X, Yt=Yt)
 Predict('神经网络算法/', W1, W2)
 plt.plot(loss_list) # 绘制 loss 曲线变化图
 plt.show()
